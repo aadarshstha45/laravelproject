@@ -1,0 +1,341 @@
+*{
+	box-sizing: border-box;
+	margin:0px;
+	padding:0px;
+
+}
+
+.first{
+	background-image: url("Photo/backgroundimage2.jpg");
+    height: 700px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.logo{
+	margin-right:auto;
+	margin-left:15px;
+	margin-top:15px;
+	cursor:pointer;
+	padding-left:10px;
+}
+
+.logoname{
+		margin-right:-90px;
+		cursor:pointer;
+		padding-right:590px;
+		padding-top:10px;
+		color:white;
+}
+
+header{
+	display:flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right:20px;
+	padding-top:10px;
+
+
+}
+
+#nav_link{
+	list-style:none;
+
+}
+
+#nav_link li{
+	display: inline-block;
+	padding:10px 10px 10px 10px;
+}
+
+#nav_link li a{
+	text-decoration: none;
+	font-family:verdana;
+	color:white;
+	margin-right:10px;
+
+}
+
+.book{
+	text-decoration: none;
+	font-family:verdana;
+	color:white;
+	padding:10px 10px 10px 10px;
+	background-color:red;
+}
+
+.popupdiv{
+	margin-top:100px;
+	margin-left:800px;
+	margin-right:100px;
+	background-color:#dac9bf;
+	padding:10px 10px 10px 10px;
+	border-radius: 10%;
+	box-shadow: -10px 10px 10px rgba(0,0,0,0.3);
+	position: absolute;
+	display:none;
+}
+
+#popupclose{
+		margin-left:300px;
+}
+
+.popupbooking{
+	padding:20px 20px 20px 20px;
+}
+
+.popupbooking select{
+	width:300px;
+	height:30px;
+}
+
+.popupbooking input{
+	width:300px;
+	height:30px;
+}
+
+.second{
+	margin-top:70px;
+	display:flex;
+	align-items: center;
+	padding:0px;
+}
+
+.second1{
+	margin-top:70px;
+	width:1000px;
+	padding:0px;
+	margin-right:100px;
+	background-color:"red";
+}
+
+.aboutustext{
+		margin-left:100px;
+		font-size:30px;
+		color:red;
+}
+
+.text1{
+	font-size:50px;
+	padding-left:100px;
+	padding-right:auto;
+}
+
+.learnmore{
+	padding-left:110px;
+	font-size:15px;
+	color:black;
+}
+
+.second2{
+	margin-left:-200px;
+	padding-left:300px;
+	padding-right:0px;
+}
+
+.second3{
+	margin-top:100px;
+	margin-left:0px;
+	padding-right:100px;
+}
+
+.third{
+	margin-top:120px;
+
+}
+
+.third1{
+	margin-top:250px;
+}
+
+.deliciousfoodtext{
+		margin-left:750px;
+		font-size:25px;
+		color:red;
+}
+
+.text2{
+	font-size:50px;
+	padding-left:750px;
+	padding-right:auto;
+}
+
+.learnmore2{
+	padding-left:750px;
+	font-size:20px;
+	color:black;
+}
+
+.third2{
+	margin-top:-370px;
+	margin-left:70px;
+
+}
+
+.third3{
+	margin-top:-410px;
+	margin-left:385px;
+
+}
+
+.fourth{
+	margin-top:200px;
+	margin-left:70px;
+
+}
+
+.fourthtext{
+	margin-bottom:50px;
+	font-size:50px;
+	text-align:center;
+}
+
+
+
+.contact{
+	color:red;
+}
+
+.contactfirst{
+    background-image: url("Photo/contactusbackground2.jpg");
+    height: 300px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.contactlogoname{
+		margin-right:-90px;
+		cursor:pointer;
+		padding-right:590px;
+		padding-top:10px;
+		color:white;
+}
+
+.contacttext{
+	margin-top:-150px;
+	margin-left:450px;
+	font-size:50px;
+	color:white;
+}
+
+.contactsecond{
+	background-color:#F3F2EE;
+
+}
+
+.contactform{
+	margin-top:0px;
+	padding-top:20px;
+
+}
+
+.contactsecondtext{
+	margin-top:92px;
+	padding-top:13px;
+	padding-right:20px;
+	font-size:20px;
+
+}
+
+.contactform tr td{
+	padding:0px 2px 10px 2px;
+}
+
+.contactform input{
+	width:400px;
+	height:50px;
+}
+
+.contactsubmitbutton{
+
+	background-color:red;
+	color:white;
+
+}
+
+.contactthird{
+	background-color:#1E1F20;
+	margin-top:-343px;
+	margin-left:1000px;
+	padding:0px 5px 38px 5px;
+
+}
+
+.contactthirdtext{
+	color:white;
+	font-size:20px;
+	padding:30px 0px 0px 0px;
+}
+
+.contactthirdtext2{
+	color:white;
+	padding:10px 0px 0px 30px;
+}
+
+.aboutfirst{
+	background-image: url("Photo/aboutbackground.jpg");
+    height: 300px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.aboutthird{
+	font-size:20px;
+	margin-top:150px;
+}
+
+
+.dropdown {
+
+	display: inline-block;
+	font-family:verdana;
+
+  }
+
+  .dropdown .dropbtn {
+	font-family:verdana;
+	padding:10px 10px 10px 10px;
+    margin: 0;
+  }
+
+
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color:white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .login{
+
+	display: inline-block;
+	padding:10px 10px 10px 10px;
+	text-decoration: none;
+	font-family:verdana;
+	color:white;
+	margin-right:10px;
+
+  }

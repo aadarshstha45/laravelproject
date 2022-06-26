@@ -29,4 +29,13 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+    public function restrict(){
+        {
+            if (Auth::user()->user_type == 'admin')
+            {
+              return 'admin';  // admin dashboard path
+            } else {
+              abort(403);  // member dashboard path
+            }
+    }
 }

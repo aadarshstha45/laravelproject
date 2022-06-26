@@ -50,12 +50,33 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => 'required|regex:/^98[0-9]{8}$/|unique:users',
+            'name' => ['required', 'regex:/^[a-zA-Z ]*$/', 'max:255'],
             'address'=> ['required', 'string', 'max:255'],
-        ]);
+            'phone' => ['required','regex:/^98[0-9]{8}$/','unique:users'],
+            'email' => ['required','string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8','confirmed'],
+
+        ],
+        [
+            'name.required' => 'Name cannot not be empty',
+            'name.regex' => 'Name can be alpabets only ',
+            'address.required' => 'Address should be specified',
+            'phone.required' => 'Phone number cannot be empty',
+            'phone.regex' => 'Invalid phone number',
+            'email.unique' => 'Email is already taken',
+            'email.required' => 'Email cannot not be empty',
+            'password.required' => 'Password cannot not be empty',
+            // 'password.confirmed' => 'Password  did not match'
+
+
+    ]);
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('[image]');
+        $image_name =$image->getClientOriginalName();
+        $image->move('pictures/users/', $image_name);
+        $request->request->add(['images' => $image_name]);
+    }
     }
 
     /**

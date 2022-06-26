@@ -1,5 +1,7 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<link rel="icon" href="{{ asset('images/h.png') }}" type="image/icon type">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">

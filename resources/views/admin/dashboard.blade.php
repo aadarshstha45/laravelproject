@@ -1,6 +1,7 @@
 @extends('admin.layouts.app',['panel' => 'Dashboard' , 'page' => ''])
 
-@section('title', 'Home')
+@section('title', 'Dashboard')
+<link rel="icon" href="{{ asset('images/h.png') }}" type="image/icon type">
 
 @section('content')
     <div class="row">
@@ -15,7 +16,7 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -23,48 +24,37 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>{{ App\Models\Car::count() }}</h3>
+                    <h3>{{ App\Models\Room::count() }}</h3>
 
-                    <p>TotalCars</p>
+                    <p>Total Rooms</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{  route ('room') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 
                 {{-- <a href="{{ route('car.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
             </div>
         </div>
-        <!-- ./col -->
-        {{-- <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>{{ App\Models\SubCategory::count()  }}</h3>
 
-                    <p>Total Sub-Categories</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
-                </div>
-                <a href="{{ route('sub_category.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div> --}}
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            {{-- <div class="small-box bg-danger">
+            <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>{{ App\Models\Product::count()  }}</h3>
+                    <h3>{{ App\Models\RoomCategory::count() }}</h3>
 
-                    <p>Total Products</p>
+                    <p>Total Room Categories</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="{{ route('product.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div> --}}
+                <a href="{{  route ('roomcategory.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
+                {{-- <a href="{{ route('car.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+            </div>
         </div>
-        <!-- ./col -->
+
+
+
     </div>
 @endsection

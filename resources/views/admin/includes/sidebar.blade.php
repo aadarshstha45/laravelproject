@@ -1,10 +1,10 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('fronthome') }}" class="brand-link">
         <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">Cars Easy</span>
+        <span class="brand-text font-weight-light"> Hotel </span>
     </a>
 
     <!-- Sidebar -->
@@ -39,8 +39,8 @@
                 <!-- Add icons to the links using the .nav-icon class
         with font-awesome or any other icon font library -->
 
-                <li class="nav-item {{ request()->is('home*') ? 'menu-open' : "" }}">
-                    <a href="{{ route('home') }}" class="nav-link {{ request()->is('home*') ? 'active' : "" }}">
+                <li class="nav-item {{ request()->is('dashboard*') ? 'menu-open' : "" }}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('dashboard*') ? 'active' : "" }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -48,23 +48,25 @@
                     </a>
                 </li>
 
-                 <li class="nav-item {{ request()->is('test*') ? 'menu-open' : "" }}">
-                    <a href="#" class="nav-link {{ request()->is('test*') ? 'active' : "" }}">
-                        <i class="nav-icon fa fa-tasks"></i>
+
+
+              <li class="nav-item {{ request()->is('roomcategory*') ? 'menu-open' : "" }}">
+                    <a href="#" class="nav-link {{ request()->is('roomcategory*') ? 'active' : "" }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Test
+                            Room Category
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('test.index') }}" class="nav-link {{ request()->is('test') ? 'active' : "" }}">
+                            <a href="{{ route('roomcategory.index') }}" class="nav-link {{ request()->is('roomcategory') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('test.create') }}" class="nav-link {{ request()->is('test/create') ? 'active' : "" }}">
+                            <a href="{{ route('roomcategory.create') }}" class="nav-link {{ request()->is('roomcategory/create') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -72,47 +74,23 @@
                     </ul>
                 </li>
 
-              <li class="nav-item {{ request()->is('carbrand*') ? 'menu-open' : "" }}">
-                    <a href="#" class="nav-link {{ request()->is('carbrand*') ? 'active' : "" }}">
+                <li class="nav-item {{ request()->is('room*') ? 'menu-open' : "" }}">
+                    <a href="#" class="nav-link {{ request()->is('room*') ? 'active' : "" }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Car Brand
+                           Room
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('carbrand.index') }}" class="nav-link {{ request()->is('carbrand') ? 'active' : "" }}">
+                            <a href="{{ route('room.index') }}" class="nav-link {{ request()->is('room') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('carbrand.create') }}" class="nav-link {{ request()->is('carbrand/create') ? 'active' : "" }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item {{ request()->is('car*') ? 'menu-open' : "" }}">
-                    <a href="#" class="nav-link {{ request()->is('car*') ? 'active' : "" }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                           Car
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('car.index') }}" class="nav-link {{ request()->is('car') ? 'active' : "" }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('car.create') }}" class="nav-link {{ request()->is('car/create') ? 'active' : "" }}">
+                            <a href="{{ route('room.create') }}" class="nav-link {{ request()->is('room/create') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -135,48 +113,29 @@
                                 <p>List</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('tag.create') }}" class="nav-link {{ request()->is('tag/create') ? 'active' : "" }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li> --}}
+
                     </ul>
                 </li>
-
-            {{--    <li class="nav-item {{ request()->is('attribute*') ? 'menu-open' : "" }}">
-                    <a href="#" class="nav-link {{ request()->is('attribute*') ? 'active' : "" }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li class="nav-item {{ request()->is('payment*') ? 'menu-open' : "" }}">
+                    <a href="#" class="nav-link {{ request()->is('payment*') ? 'active' : "" }}">
+                        <i class="nav-icon fa fa-tags"></i>
                         <p>
-                            Attribute
+                            Payment
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('attribute.index') }}" class="nav-link {{ request()->is('attribute') ? 'active' : "" }}">
+                            <a href="{{ route('payment.index') }}" class="nav-link {{ request()->is('payment') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('attribute.create') }}" class="nav-link {{ request()->is('attribute/create') ? 'active' : "" }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="{{ route('setting.create') }}" class="nav-link">
-                        <i class="nav-icon fa fa-cog"></i>
-                        <p>
-                            Setting
-                        </p>
-                    </a>
-                </li> --}}
 
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
