@@ -22,13 +22,15 @@
                                 <th>S.N.</th>
                                 <th>Room No.</th>
                                 <th>Total Amount</th>
+                                <th>Total Adults</th>
+                                <th>Total Children</th>
                                 <th>Check In Date</th>
                                 <th>Check Out Date</th>
 
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>                         
+                        <tbody>
                             @foreach ($data['books'] as $book )
 
 
@@ -36,13 +38,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $book->bookedRoomNo -> roomNo }}</td>
                                     <td>{{ $book-> charge }}</td>
+                                    <td>{{ $book->noOfAdults }}</td>
+                                    <td>{{ $book->noOfChildren }}</td>
                                     <td>{{ $book->checkinDate }}</td>
                                     <td>{{ $book->checkoutDate }}</td>
 
 
                                     <td style="display:flex">
-                                        <a class="btn btn-primary btn-sm mr-2"
-                                            href="#">
+                                        <a class="btn btn-primary btn-sm" href="#">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
@@ -57,7 +60,7 @@
                                             </button>
                                         </form>
                                     </td>
-                                </tr>                          
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

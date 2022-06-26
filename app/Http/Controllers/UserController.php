@@ -24,7 +24,6 @@ class UserController extends Controller
         return view($this->view_path.'index',compact('data'));
     }
     public function show($id){
-
         $data = [];
 
         $data['row'] = $this->model->where('id',$id)->first();

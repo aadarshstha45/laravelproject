@@ -63,6 +63,7 @@
 
                             @auth
                             <a class="nav-link" href="{{ route('mybookings') }}">My Bookings</a>
+                            <a class="nav-link" href="{{ route('myprofile') }}">Profile</a>
 
                                  <a href="{{ route('fronthome') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                        Logout

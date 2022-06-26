@@ -71,12 +71,7 @@ class RegisterController extends Controller
 
     ]);
 
-    if ($request->hasFile('image')) {
-        $image = $request->file('[image]');
-        $image_name =$image->getClientOriginalName();
-        $image->move('pictures/users/', $image_name);
-        $request->request->add(['images' => $image_name]);
-    }
+
     }
 
     /**
@@ -94,5 +89,12 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('[image]');
+            $image_name =$image->getClientOriginalName();
+            $image->move('images/users/', $image_name);
+            $request->request->add(['images' => $image_name]);
+        }
     }
 }

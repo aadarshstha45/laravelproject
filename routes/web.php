@@ -30,13 +30,15 @@ Route::get('rooms/{id}',[App\Http\Controllers\FrontendController::class, 'room_d
 Route::post('/bookroom',[App\Http\Controllers\FrontendController::class, 'bookroom'])->name('bookroom')->middleware(['web','auth']);
 Route::get('/mybookings',[App\Http\Controllers\FrontendController::class, 'mybookings'])->name('mybookings')->middleware(['web','auth']);
 Route::delete('mybookings/delete', [App\Http\Controllers\RoomController::class, 'delete'])->name('mybookings.delete');
-
+Route::get('myprofile/', [App\Http\Controllers\FrontendController::class, 'myprofile'])->name('myprofile');
+Route::get('myprofile/edit/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_edit'])->name('myprofile.edit');
+Route::put('myprofile/update/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_update'])->name('myprofile.update');
 Route::get('/',function(){return view  ('frontend.fronthome');})->name('fronthome');
 
 Route::middleware(['web','auth','isAdmin'])->group(function () {
 
 
-Route::get('/admin',[App\Http\Controllers\HomeController::class, 'restricr'])->name('dashboard');
+Route::get('/admin',function(){return view ('admin.dashboard');})->name('dashboard');
 
      //RoomCategory
      Route::get('roomcategory', [App\Http\Controllers\RoomCategoryController::class, 'index'])->name('roomcategory.index');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Profile;
 use Auth;
+use App\Models\User;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -18,7 +20,7 @@ class FrontendController extends Controller
 
     public function showrooms(){
         $rooms = [];
-        $rooms['rows'] = $this->model->latest()->get();
+        $rooms['rows'] = $this->model->get();
         return view('frontend.rooms',compact('rooms'));
     }
 
@@ -34,10 +36,10 @@ class FrontendController extends Controller
 
     public function bookroom(Request $request){
 
-        $start=Carbon::parse($request['checkinDate']);
-        $end=Carbon::parse($request['checkoutDate']);
+        $checkin=Carbon::parse($request['checkinDate']);
+        $checkout=Carbon::parse($request['checkoutDate']);
 
-        $result = $start->diffInDays($end);
+        $result = $checkin->diffInDays($checkout);
 
 
         $request->validate([
@@ -80,7 +82,40 @@ class FrontendController extends Controller
         return redirect()->route('frontend.fronthome');
 
     }
+    public function myprofile(){
 
+        $id = Auth::user()->id;
+        $data = [];
+
+        // $data['rooms'] = Room::get();
+        $data['row'] = User::where('id',$id)->first();
+        return view('frontend.myprofile',compact('data'));
+
+    }
+
+    public function myprofile_edit($id){
+
+        $id = Auth::user()->id;
+        $data = [];
+        $data['row'] = User::where('id',$id)->first();
+        return view('frontend.myprofileedit',compact('data'));
+    }
+
+    public function myprofile_update(Request $request,$id){
+
+        try{
+        $data['row'] = User::where('id',$id)->first();
+
+            $data['row']->update($request->all());
+            session()->flash('success_message','Profile Updated Successfully');
+        }
+        catch(\Exception $e){
+            session()->flash('error_message','Something Went Wrong!!');
+
+        }
+        return redirect()->route('myprofile');
+
+    }
 }
 
 

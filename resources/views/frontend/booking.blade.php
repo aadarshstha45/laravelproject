@@ -43,12 +43,12 @@
                         </div>
                     </div>
 
-              
+
 
                     <div class="form-group row mb-3">
                         {{ Form::label('noOfChildren', 'Children', ['class' => 'col-3 col-form-label']) }}
                         <div class="col-5">
-                            {{ Form::number('noOfChildren', null, ['class' => 'form-control', 'id' => 'noOfChildren', 'placeholder' => 'Number of Children']) }}
+                            {{ Form::number('noOfChildren', 0, ['class' => 'form-control', 'id' => 'noOfChildren', 'placeholder' => 'Number of Children']) }}
 
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     {{ Form::button('Book',['type' =>'submit','class' => 'btn btn-primary']) }}
                 </div>
 
-                
+
 
                 {{ Form::close() }}
             </div>
