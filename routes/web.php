@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,32 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.fronthome');
-});
 
 Auth::routes();
 
 
 
 
-Route::get('/home', function(){return view  ('frontend.fronthome');})->name('home');
+Route::get('/home', [App\Http\Controllers\FrontendController::class, 'home'])->name('home');
 Route::get('/rooms', [App\Http\Controllers\FrontendController::class, 'showrooms'])->name('showrooms');
-Route::get('/aboutus',function(){return view ('frontend.aboutus');})->name('aboutus');
-Route::get('/contactus',function(){return view ('frontend.contactus');})->name('contactus');
+Route::get('/aboutus',[App\Http\Controllers\FrontendController::class, 'aboutus'])->name('aboutus');
+Route::get('/contactus',[App\Http\Controllers\FrontendController::class, 'contactus'])->name('contactus');
 Route::get('rooms/{id}',[App\Http\Controllers\FrontendController::class, 'room_details'])->name('roombook');
 Route::post('/bookroom',[App\Http\Controllers\FrontendController::class, 'bookroom'])->name('bookroom')->middleware(['web','auth']);
 Route::get('/mybookings',[App\Http\Controllers\FrontendController::class, 'mybookings'])->name('mybookings')->middleware(['web','auth']);
-Route::delete('mybookings/delete', [App\Http\Controllers\RoomController::class, 'delete'])->name('mybookings.delete');
+Route::delete('mybookings/delete/{id}', [App\Http\Controllers\FrontendController::class, 'cancel'])->name('mybookings.cancel');
 Route::get('myprofile/', [App\Http\Controllers\FrontendController::class, 'myprofile'])->name('myprofile');
 Route::get('myprofile/edit/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_edit'])->name('myprofile.edit');
 Route::put('myprofile/update/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_update'])->name('myprofile.update');
-Route::get('/',function(){return view  ('frontend.fronthome');})->name('fronthome');
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'home'])->name('fronthome');
 
 Route::middleware(['web','auth','isAdmin'])->group(function () {
 
 
-Route::get('/admin',function(){return view ('admin.dashboard');})->name('dashboard');
+Route::get('/admin',[App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
 
      //RoomCategory
      Route::get('roomcategory', [App\Http\Controllers\RoomCategoryController::class, 'index'])->name('roomcategory.index');
@@ -65,7 +63,12 @@ Route::get('/admin',function(){return view ('admin.dashboard');})->name('dashboa
       //Payment
       Route::get('payment', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
       Route::get('payment/{id}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
+      Route::post('paynow', [App\Http\Controllers\PaymentController::class, 'khaltipayment'])->name('khalti.payment');
 
+      //Bookings
+
+      Route::get('/bookings', [App\Http\Controllers\BookingsController::class, 'bookingslist'])->name('bookings.list');
+      Route::get('/bookings/{id}', [App\Http\Controllers\BookingsController::class, 'details'])->name('bookings.details');
 
 
 

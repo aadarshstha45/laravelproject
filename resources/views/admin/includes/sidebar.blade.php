@@ -41,7 +41,8 @@
 
                 <li class="nav-item {{ request()->is('dashboard*') ? 'menu-open' : "" }}">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('dashboard*') ? 'active' : "" }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+
+                        <i class="nav-icon fas fa-tachometer-alt" ></i>
                         <p>
                             Dashboard
                         </p>
@@ -109,6 +110,25 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link {{ request()->is('user') ? 'active' : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->is('bookings*') ? 'menu-open' : "" }}">
+                    <a href="#" class="nav-link {{ request()->is('bookings*') ? 'active' : "" }}">
+                        <i class="nav-icon fa fa-tags"></i>
+                        <p>
+                            Bookings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('bookings.list') }}" class="nav-link {{ request()->is('bookings') ? 'active' : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List</p>
                             </a>

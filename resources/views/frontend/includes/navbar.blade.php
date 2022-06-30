@@ -1,12 +1,17 @@
-<link rel="stylesheet" href="{{ asset('dist/css/fontawesome.min.css') }}">
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+ <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 
 <link rel="icon" href="{{ asset('images/h.png') }}" type="image/icon type">
 <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('dist/css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/css/templatemo.css') }}">
+<link rel="stylesheet" href="{{ asset('dist/css/fontawesome.min.css') }}">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
-
+</head>
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
     <div class="container text-light">
         <div class="w-100 d-flex justify-content-between">
@@ -33,7 +38,7 @@
         </button>
 
         <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-            <div class="flex-fill">
+            <div class="flex-fill ">
                 <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('fronthome') }}">Home</a>
@@ -62,11 +67,12 @@
                         @if (Route::has('login'))
 
                             @auth
+
                             <a class="nav-link" href="{{ route('mybookings') }}">My Bookings</a>
                             <a class="nav-link" href="{{ route('myprofile') }}">Profile</a>
 
                                  <a href="{{ route('fronthome') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                       Logout
+                                    Logout
                               </a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                   @csrf
@@ -79,3 +85,18 @@
         </div>
     </div>
 </nav>
+
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+    <script src=" {{ asset('dist/js/jquery-migrate-1.2.1.min.js') }}"></script>
+    <script src=" {{ asset('dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src=" {{ asset('dist/js/templatemo.js') }}"></script>
+    <script src="{{ asset('dist/js/custom.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('dist/js/sweetalert.js') }}"></script>
+

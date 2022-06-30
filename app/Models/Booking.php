@@ -10,7 +10,7 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'checkinDate','checkoutDate','noOfAdults','noOfChildren','user_id','roomNo','charge'
+        'checkinDate','checkoutDate','noOfAdults','noOfChildren','user_id','roomNo','charge','status'
     ];
 
 

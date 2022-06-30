@@ -40,7 +40,7 @@
 <div class="form-group row mb-3">
     {{ Form::label('status', 'Status *', ['class' => 'col-3 col-form-label']) }}
     <div class="col-9">
-        {{ Form::select('status',['A'=>"Available",'U'=>"Unavailable"], null, ['class' => 'form-control', 'id' => 'status', 'placeholder' => 'Room Status']) }}
+        {{ Form::select('status',['Available'=>"Available",'Unavailable'=>"Unavailable"], null, ['class' => 'form-control', 'id' => 'status', 'placeholder' => 'Room Status']) }}
         @include('admin.includes.validation_error_message',['fieldname' => 'status'])
     </div>
 </div>

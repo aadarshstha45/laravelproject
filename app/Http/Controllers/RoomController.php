@@ -53,20 +53,20 @@ class RoomController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =$image->getClientOriginalName();
-            $image->move('images/', $image_name);
+            $image->move('images/rooms', $image_name);
             $request->request->add(['images' => $image_name]);
         }
 
 
-     //   try{
+       try{
             $request->request->add(['addedBy' => auth()->user()->id]);
 
             $this->model->create($request->all());
-        //    session()->flash('success_message','Data Inserted Successfully');
-        // }
-        // catch(Exception $e){
-        //   session()->flash('error_message','Something Went Wrong!!');
-        // }
+           session()->flash('success_message','Data Inserted Successfully');
+        }
+        catch(Exception $e){
+          session()->flash('error_message','Something Went Wrong!!');
+        }
 
         return redirect()->route('room.index');
 

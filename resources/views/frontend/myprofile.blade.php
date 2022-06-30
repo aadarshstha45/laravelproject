@@ -23,6 +23,12 @@
                 <div class="card-body">
                 <table id="dataTable" class="table table-bordered table-hover">
                 <tr>
+                    <th style="padding:20px 10px">Profile Picture</th>
+
+                    <td> <img src="{{ asset('images/'. $data['row']->images )}}" class="img-circle elevation-2" alt="User Image" style="width: 100px">
+
+                    </td>
+                </tr>
                 <th style="padding:20px 10px">Name</th>
                     <td> <input id="name" class="form-control" name="name" value="{{ $data['row']->name }} " readonly>
                     </td>

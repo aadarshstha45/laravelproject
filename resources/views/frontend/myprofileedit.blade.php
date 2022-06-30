@@ -77,6 +77,9 @@
                             <div class="col-md-6">
 
                                 <input type="file" name="image"  id="image">
+                                <br>
+                    <img src="{{ asset('images/'. $data['row']->images )}}" class="img-circle elevation-2" alt="User Image" style="width: 100px">
+
                         </div>
                     </div>
 

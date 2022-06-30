@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,6 +38,7 @@ class LoginController extends Controller
 {
   if (Auth::user()->user_type == 'admin')
   {
+
     return 'admin';  // admin dashboard path
   } else {
     return 'home';  // member dashboard path
