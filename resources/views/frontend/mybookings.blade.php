@@ -15,6 +15,8 @@
     <div class="row">
         <div class="col-12">
          <div class="card">
+            @include('frontend.includes.flashmessage')
+
                 <div class="card-body">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
@@ -32,8 +34,6 @@
                         </thead>
                         <tbody>
                             @foreach ($data['books'] as $book )
-
-
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $book->bookedRoomNo -> roomNo }}</td>
@@ -45,16 +45,16 @@
 
 
                                     <td style="display:flex">
-                                        <button id="payment-button" style="background-color: #5C2D91; cursor: pointer; color: #fff; border: none; padding: 5px 10px; border-radius: 2px">Pay with Khalti</button>
+                                        <button class="btn" id="payment-button" style="background-color: #5C2D91; cursor: pointer; color: #fff;">Pay with Khalti</button>
 
-                                        <form action="{{ route('mybookings.cancel', ['id' => $book->id]) }}" method="post">
+                                 <form action="{{ route('mybookings.delete', ['id' => $book->id]) }}" method="post">
                                             @method('delete')
-
+                                            @csrf
                                             <button class="btn btn-danger btn-sm delete-confirm" type="button">
-
-                                                Cancel
+                                                <i class="fas fa-trash"></i>
+                                                Delete
                                             </button>
-                                        </form>
+                                 </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -114,7 +114,7 @@
 @section('js')
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <script src=" {{ asset('dist/js/jquery-migrate-1.2.1.min.js') }}"></script>
-    <script src=" {{ asset('plugins/bootstrap//js/bootstrap.bundle.min.js') }}"></script>
+    <script src=" {{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src=" {{ asset('dist/js/templatemo.js') }}"></script>
     <script src="{{ asset('dist/js/custom.js') }}"></script>
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -125,6 +125,26 @@
     <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dist/js/sweetalert.js') }}"></script>
+    <script>
+        $(function() {
+            $('#dataTable').DataTable();
+        });
 
+        $(".delete-confirm").click(function(){
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $(this).closest("form").submit();
+            }
+            })
+        });
+    </script>
 
 @endsection

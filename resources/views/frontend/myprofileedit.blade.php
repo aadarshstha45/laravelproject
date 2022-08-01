@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
                 <div class="card-body">
-           {{ Form::model($data['row'], ['route' => ['myprofile.update',  $data['row']->id],'method' => 'put']) }}
+           {{ Form::model($data['row'], ['route' => ['myprofile.update',  $data['row']->id],'method' => 'put','enctype' => 'multipart/form-data']) }}
                         @csrf
                         <table id="dataTable" class="table table-bordered table-hover">
                         <div class="row mb-3">

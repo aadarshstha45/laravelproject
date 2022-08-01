@@ -27,7 +27,7 @@ Route::get('/contactus',[App\Http\Controllers\FrontendController::class, 'contac
 Route::get('rooms/{id}',[App\Http\Controllers\FrontendController::class, 'room_details'])->name('roombook');
 Route::post('/bookroom',[App\Http\Controllers\FrontendController::class, 'bookroom'])->name('bookroom')->middleware(['web','auth']);
 Route::get('/mybookings',[App\Http\Controllers\FrontendController::class, 'mybookings'])->name('mybookings')->middleware(['web','auth']);
-Route::delete('mybookings/delete/{id}', [App\Http\Controllers\FrontendController::class, 'cancel'])->name('mybookings.cancel');
+Route::delete('mybookings/{id}/delete', [App\Http\Controllers\FrontendController::class, 'delete'])->name('mybookings.delete');
 Route::get('myprofile/', [App\Http\Controllers\FrontendController::class, 'myprofile'])->name('myprofile');
 Route::get('myprofile/edit/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_edit'])->name('myprofile.edit');
 Route::put('myprofile/update/{id}', [App\Http\Controllers\FrontendController::class, 'myprofile_update'])->name('myprofile.update');

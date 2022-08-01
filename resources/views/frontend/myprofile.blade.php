@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
-    <div class="container text-center">
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-9">
             @include('frontend.includes.flashmessage')
@@ -20,7 +20,7 @@
                 Edit
             </a>
         </div>
-                <div class="card-body">
+                <div class="card-body mr-5">
                 <table id="dataTable" class="table table-bordered table-hover">
                 <tr>
                     <th style="padding:20px 10px">Profile Picture</th>
@@ -45,7 +45,7 @@
                 </td>
                 </tr>
             <tr>
-                <th style="padding:20px 10px"">Address</th>
+                <th style="padding:20px 10px">Address</th>
 
                 <td> <input id="address" class="form-control" name="address" value="{{ $data['row']->address }} " readonly>
                 </td>

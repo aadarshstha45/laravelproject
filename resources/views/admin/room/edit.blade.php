@@ -13,7 +13,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        {{ Form::model($data['row'], ['route' => ['room.update',  $data['row']->id],'method' => 'put']) }}
+        {{ Form::model($data['row'], ['route' => ['room.update',  $data['row']->id],'method' => 'put','enctype' => 'multipart/form-data']) }}
 
             @include('admin.room.includes.main_form')
 

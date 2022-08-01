@@ -42,7 +42,7 @@ class FrontendController extends Controller
 
 
     public function bookroom(Request $request){
-
+        $status = Room::all('status');
         $checkin=Carbon::parse($request['checkinDate']);
         $checkout=Carbon::parse($request['checkoutDate']);
 
@@ -68,13 +68,15 @@ class FrontendController extends Controller
             // $data = [];
             // $data['roomNo'] = Room::pluck('roomNo','id');
 
-          $request->request->add(['user_id' => auth()->user()->id]);
+        if($status === 'Available'){
+            $request->request->add(['user_id' => auth()->user()->id]);
             $request->request->add(['roomNo' => $request['roomNo']]);
-
             $request->request->add(['charge' => $request['charge']*$result]);
-            Booking::create($request->all());
-             return redirect()->route('mybookings');
-
+                Booking::create($request->all());
+            return redirect()->route('mybookings');
+        }else{
+            return redirect()->route('mybookings')->with(session()->flash('error_message','Error'));
+        }
     }
 
     public function mybookings(){
@@ -86,11 +88,11 @@ class FrontendController extends Controller
 
     }
 
-    public function cancel($id){
+    public function delete($id){
 
 
-        $data['row'] = Booking::where('id',$id)->first();
-        $data['row']->delete();
+        $data['books'] = Booking::where('id',$id)->first();
+        $data['books']->delete();
 
         return redirect()->route('mybookings');
 
@@ -146,6 +148,7 @@ class FrontendController extends Controller
     }
     public function home(){
 
+    // $id = Auth::user()->id;
         $data = [];
         //  $data['row'] = User::where('id',$id)->first();
         $data['rows'] = Room::get();

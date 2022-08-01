@@ -46,7 +46,10 @@
 
                 {{ Form::close() }}
 
+
             </div>
+
+
             <!-- /.card -->
 
         </div>

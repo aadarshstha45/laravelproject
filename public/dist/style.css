@@ -256,8 +256,8 @@ header{
 }
 
 .contactthird{
-	background-color:#1E1F20;
-	margin-top:-343px;
+	background-color:#1E1F20 !important;
+
 	margin-left:1000px;
 	padding:0px 5px 38px 5px;
 
@@ -294,6 +294,6 @@ header{
     margin-left: 300px;
     margin-top: 20px;
   }
- 
+
 
 
