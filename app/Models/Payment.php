@@ -25,6 +25,4 @@ class Payment extends Model
         return $this->belongsTo(Room::class,'paidFor');
     }
 
-
-
 }
