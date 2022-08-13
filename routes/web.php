@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\FrontendController::class, 'home'])->n
 Route::get('/rooms', [App\Http\Controllers\FrontendController::class, 'showrooms'])->name('showrooms');
 Route::get('/aboutus',[App\Http\Controllers\FrontendController::class, 'aboutus'])->name('aboutus');
 Route::get('/contactus',[App\Http\Controllers\FrontendController::class, 'contactus'])->name('contactus');
-Route::get('rooms/{id}',[App\Http\Controllers\FrontendController::class, 'room_details'])->name('roombook');
+Route::get('rooms/{id}',[App\Http\Controllers\FrontendController::class, 'room_details'])->name('roombook')->middleware(['web','auth']);
 Route::post('/bookroom',[App\Http\Controllers\FrontendController::class, 'bookroom'])->name('bookroom')->middleware(['web','auth']);
 Route::get('/mybookings',[App\Http\Controllers\FrontendController::class, 'mybookings'])->name('mybookings')->middleware(['web','auth']);
 Route::delete('mybookings/{id}/delete', [App\Http\Controllers\FrontendController::class, 'delete'])->name('mybookings.delete');
@@ -64,6 +64,7 @@ Route::get('/admin',[App\Http\Controllers\UserController::class, 'dashboard'])->
       Route::get('payment', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
       Route::get('payment/{id}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
       Route::post('paynow', [App\Http\Controllers\PaymentController::class, 'khaltipayment'])->name('khalti.payment');
+      Route::post('payments/store', [App\Http\Controllers\PaymentController::class, 'khaltipaymentstore'])->name('khalti.storePayment');
 
       //Bookings
 

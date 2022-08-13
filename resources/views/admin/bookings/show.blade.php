@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['panel' => 'User','page' => 'Show'])
+@extends('admin.layouts.app',['panel' => 'Bookings','page' => 'Show'])
 
 @section('title', 'Home')
 

@@ -11,13 +11,12 @@
 @endsection
 
 
-
     <div class="row">
-        <div class="col-12">
+        {{-- <div class="col-12"> --}}
          <div class="card">
             @include('frontend.includes.flashmessage')
 
-                <div class="card-body">
+                <div class="card-body col-12">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -28,6 +27,7 @@
                                 <th>Total Children</th>
                                 <th>Check In Date</th>
                                 <th>Check Out Date</th>
+
 
                                 <th>Action</th>
                             </tr>
@@ -44,55 +44,60 @@
                                     <td>{{ $book->checkoutDate }}</td>
 
 
-                                    <td style="display:flex">
-                                        <button class="btn" id="payment-button" style="background-color: #5C2D91; cursor: pointer; color: #fff;">Pay with Khalti</button>
 
-                                 <form action="{{ route('mybookings.delete', ['id' => $book->id]) }}" method="post">
+                                    <td style="display:flex">
+                                        <button class="btn" id='{{ $book->id }}' style="background-color: #5C2D91; cursor: pointer; color: #fff;">Pay with Khalti</button>
+
+                                        <form action="{{ route('mybookings.delete', ['id' => $book->id]) }}" method="post">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm delete-confirm" type="button">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
+                                            <button class="btn btn-danger btn-sm cancel-confirm" type="button">
+
+                                                Cancel
                                             </button>
-                                 </form>
+                                        </form>
                                     </td>
+                                
+
+
+
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <script>
+                                 <script>
         var config = {
             // replace the publicKey with yours
-            "publicKey": "config('app.khalti_public_key')",
-            "productIdentity": "1234567890",
-            "productName": "Melonlord",
-            "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+            "publicKey": "{{ config('app.khalti_public_key') }}",
+            "productIdentity": "{{ $book->id }}",
+            "productName": "{{ $book->bookedRoomNo->roomNo }}",
+            "productUrl": "http://chautari.com",
             "paymentPreference": [
-                "KHALTI",
-                "EBANKING",
-                "MOBILE_BANKING",
-                "CONNECT_IPS",
-                "SCT",
+                "KHALTI"
                 ],
             "eventHandler": {
                 onSuccess (payload) {
+                   $.ajax({
+                    type : "POST",
+                    url : "{{ route('khalti.payment') }}",
+                    data: {
+                        'amount' : 1000,
+                        'token' : payload.token,
+                        '_token' : "{{ csrf_token() }}"
+                    },
+                    success: function(res){
                         $.ajax({
-                            type : "POST",
-                            url: "{{ route('khalti.payment') }}",
-                            data: {
-                                'amount' : 1000,
-                                'token' : payload.token,
+                            type: "POST",
+                            url : "{{ route('khalti.storePayment') }}",
+                            data:{
+                                'response':res,
                                 '_token' : "{{ csrf_token() }}",
-                            }
-                })
 
+                            },
+                            success: function(res){
+                                console.log('success');
+                            }
+                        })
+                        console.log(res)
+                    }
+                });
                     console.log(payload);
                 },
                 onError (error) {
@@ -105,32 +110,35 @@
         };
 
         var checkout = new KhaltiCheckout(config);
-        var btn = document.getElementById("payment-button");
+        var btn = document.getElementById("{{ $book->id}}");
         btn.onclick = function () {
             // minimum transaction amount must be 10, i.e 1000 in paisa.
             checkout.show({amount: 1000});
         }
     </script>
-@section('js')
+                            @endforeach
+                        </tbody>
+                    </table>
+                {{-- </div> --}}
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-    <script src=" {{ asset('dist/js/jquery-migrate-1.2.1.min.js') }}"></script>
-    <script src=" {{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src=" {{ asset('dist/js/templatemo.js') }}"></script>
-    <script src="{{ asset('dist/js/custom.js') }}"></script>
+
+
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    {{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> --}}
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dist/js/sweetalert.js') }}"></script>
     <script>
         $(function() {
             $('#dataTable').DataTable();
         });
 
-        $(".delete-confirm").click(function(){
+        $(".cancel-confirm").click(function(){
             Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -138,7 +146,7 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, cancel it!'
             }).then((result) => {
             if (result.isConfirmed) {
                 $(this).closest("form").submit();
@@ -146,5 +154,3 @@
             })
         });
     </script>
-
-@endsection

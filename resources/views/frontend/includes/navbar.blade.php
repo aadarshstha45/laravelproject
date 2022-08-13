@@ -72,7 +72,7 @@
                             <a class="nav-link" href="{{ route('myprofile') }}">Profile</a>
 
                                  <a href="{{ route('fronthome') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    <span class="ti-user icon-green"> </span>
+                                  Logout
                               </a>
                               <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                   @csrf

@@ -15,11 +15,14 @@ class Payment extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-            'transactionId','paymentMethod','paidDate','amount','paidBy','created_at'
+            'transactionId','paidDate','amount','paidBy','paidFor','status','created_at'
     ];
 
     public function user(){
         return $this->belongsTo(User::class,'paidBy');
+    }
+    public function paidfor(){
+        return $this->belongsTo(Room::class,'paidFor');
     }
 
 

@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('booking_payments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('booking_id')->constrained('bookings');
-            $table->foreignId('payment_id')->constrained('payments');
-            $table->timestamps();
+        Schema::table('payments', function (Blueprint $table) {
+            $table->string('status')->after('paidFor')->default('None');
+
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_payments');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->dropColumn('paidFor');
+
+        });
     }
 };

@@ -22,5 +22,9 @@ public function bookedby(){
 public function bookedRoomNo(){
     return $this->belongsTo(Room::class,'roomNo');
 }
+public function payment(){
+    return $this->hasOne(Payment::class);
+}
+
 
 }

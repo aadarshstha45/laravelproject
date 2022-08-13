@@ -20,7 +20,6 @@ class PaymentController extends Controller
         $data = [];
 
         $data['rows'] = $this->model->latest()->get();
-
         return view($this->view_path.'index',compact('data'));
     }
     public function show($id){
@@ -31,18 +30,16 @@ class PaymentController extends Controller
 
         return view('admin.payment.show',compact('data'));
     }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+
 
     public function khaltipayment(Request $request){
-        
+
         $amount = $request->amount;
         $token = $request->token;
         $test_secret_key = config('app.khalti_secret_key');
         $args = http_build_query(array(
             'token' => $token,
-            'amount'  => 1000
+            'amount'  => $amount
         ));
 
         $url = "https://khalti.com/api/v2/payment/verify/";
@@ -61,8 +58,22 @@ class PaymentController extends Controller
         $response = curl_exec($ch);
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+        $token = json_decode($response, TRUE);
 
-        return $response;
+        if (isset($token['idx'])&& $status_code == 200)
+        {
+    $payment =new Payment;
+    $payment->transactionId=$token['idx'];
+    $payment->amount=$token['amount'];
+    $payment->paidBy=auth()->user()->id;
+    $payment->paidFor=$token['product_identity'];
+    $payment->status='Completed';
+    $payment->save();
+       return $response;
+    }
+}
+    public function khaltipaymentstore(){
+
     }
 
 }

@@ -23,7 +23,7 @@
                         Create
                     </a>
                 </div>
-                <!-- /.card-header -->
+              
                 <div class="card-body">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['panel' => 'User','page' => 'List'])
+@extends('admin.layouts.app',['panel' => 'Payment','page' => 'List'])
 
 @section('css')
     <!-- DataTables -->
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
-@section('title', 'Home')
+@section('title', 'Payment List')
 
 @section('content')
     <div class="row">
@@ -25,7 +25,8 @@
                                 <th>Amount</th>
                                 <th>Paid By</th>
                                 <th>Paid Date</th>
-                                <th>Payment Method</th>
+                                <th>Paid For </th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,8 +39,10 @@
                                     <td>{{ $row->amount }}</td>
                                     <td>{{ $row->user-> name }}</td>
                                     <td>{{ $row->paidDate }}</td>
-                                    <td>{{ $row->paymentMethod }}</td>
-                                    
+                                    <td>{{ $row->paidfor->roomNo}}</td>
+
+
+
                                     <td style="display:flex">
                                         <a class="btn btn-primary btn-sm mr-2"
                                             href="{{ route('payment.show', ['id' => $row->id]) }}">

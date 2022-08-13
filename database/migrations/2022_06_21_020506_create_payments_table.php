@@ -19,7 +19,9 @@ return new class extends Migration
             $table->date('paidDate');
             $table->string('amount');
             $table->string('paymentMethod');
+            $table->string('status');
             $table->foreignId('paidBy')->constrained('users');
+            $table->foreignId('paidFor')->constrained('bookings');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('paymentss');
     }
 };

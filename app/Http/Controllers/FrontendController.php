@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Payment;
 use App\Models\Profile;
 use Auth;
 use App\Models\User;
@@ -23,7 +24,7 @@ class FrontendController extends Controller
         // $id = Auth::user()->id;
           $data = [];
         //  $data['row'] = User::where('id',$id)->first();
-        $data['rows'] = Room::get();
+        $data['rows'] = Room::where('status','Available')->get();
 
         return view('frontend.rooms',compact('data'));
     }
@@ -42,7 +43,7 @@ class FrontendController extends Controller
 
 
     public function bookroom(Request $request){
-        $status = Room::all('status');
+        $status = Room::where('status','Available')->first();
         $checkin=Carbon::parse($request['checkinDate']);
         $checkout=Carbon::parse($request['checkoutDate']);
 
@@ -68,15 +69,14 @@ class FrontendController extends Controller
             // $data = [];
             // $data['roomNo'] = Room::pluck('roomNo','id');
 
-        if($status === 'Available'){
             $request->request->add(['user_id' => auth()->user()->id]);
             $request->request->add(['roomNo' => $request['roomNo']]);
             $request->request->add(['charge' => $request['charge']*$result]);
                 Booking::create($request->all());
+                $data['room'] = Room::where('id',$request['roomNo']);
+
+                $data['room']->update(['status' => 'Unavailable']);
             return redirect()->route('mybookings');
-        }else{
-            return redirect()->route('mybookings')->with(session()->flash('error_message','Error'));
-        }
     }
 
     public function mybookings(){
@@ -84,6 +84,9 @@ class FrontendController extends Controller
     $data = [];
     // $data['row'] = Booking::where('id',$id)->first();
     $data['books'] = Booking::where('user_id',$id)->get();
+    $data['books'] = Booking::where('status','Booked')->get();
+
+    $data['status'] = Payment::select('status')->get();
     return view('frontend.mybookings',compact('data'));
 
     }
@@ -92,8 +95,10 @@ class FrontendController extends Controller
 
 
         $data['books'] = Booking::where('id',$id)->first();
-        $data['books']->delete();
-
+        $data['books']->update(['status' => 'Canceled']);
+        $data['room'] = Room::where('id','roomNo');
+        $car = Booking::join('rooms', 'rooms.id', '=', 'bookings.roomNo')->where('bookings.id',$id)->update(['rooms.status'=>'Available']);
+        session()->flash('success_message','Room Canceled Successfully');
         return redirect()->route('mybookings');
 
     }

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['panel' => 'Room','page' => 'List'])
+@extends('admin.layouts.app',['panel' => 'Bookings','page' => 'List'])
 
 @section('css')
     <!-- DataTables -->
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
-@section('title', 'List of Rooms')
+@section('title', 'Bookings History')
 
 @section('content')
     <div class="row">
@@ -17,7 +17,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">List Rooms</h3>
+                    <h3 class="card-title">List Bookings</h3>
                     <a class="btn btn-success btn-md float-right" href="{{ route('room.create') }}">
                         <i class="fas fa-pencil-alt"></i>
                         Create

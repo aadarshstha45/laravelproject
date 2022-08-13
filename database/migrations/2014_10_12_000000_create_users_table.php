@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('images')->nullable();
             $table->string('user_type')->nullable();
             $table->rememberToken();
             $table->timestamps();

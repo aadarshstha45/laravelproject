@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['panel' => 'User','page' => 'List'])
+@extends('admin.layouts.app',['panel' => 'Payments','page' => 'List'])
 
 @section('css')
     <!-- DataTables -->
