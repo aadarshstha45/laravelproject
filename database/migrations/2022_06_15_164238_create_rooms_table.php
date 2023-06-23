@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_categories_id')->constrained('room_categories');
             $table->string('roomNo');
-            $table->string('image')->nullable();
+            $table->string('images')->nullable();
             $table->string('status');
             $table->integer('price');
             $table->foreignId('addedBy')->constrained('users');
